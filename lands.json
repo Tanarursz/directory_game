@@ -1,0 +1,11 @@
+{
+    "name": "erdo",
+    "x": 40,
+    "y": 20
+}{
+    "name": "szarajevo",
+    "places": [
+        "szar.m",
+        "jevo.m"
+    ]
+}
