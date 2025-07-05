@@ -1,5 +1,16 @@
 {
-    "name": "erdo",
-    "x": 40,
-    "y": 20
+    "places": [
+        {
+            "land": "fasz",
+            "name": "erdo.map",
+            "x": 50,
+            "y": 30
+        },
+        {
+            "land": "kope",
+            "name": "kishegy.map",
+            "x": 50,
+            "y": 30
+        }
+    ]
 }
