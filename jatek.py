@@ -1,8 +1,63 @@
+import csv
 import os
 import json
 import random
-from os import mkdir
+import keyboard
 
+
+class Character:
+    def __init__(self, skin="x", here="fasz/erdo.map", coordinates=[1, 1]):
+        self.skin = skin
+        self.here = here
+        self.coordinates = coordinates
+        with open(here, "r") as file:
+            self.load = [list(section) for section in file.readlines()]
+
+    def spawn(self):
+        with open(self.here, "r") as f:
+            place = [list(section) for section in f.readlines()]
+            place[self.coordinates[0]][self.coordinates[1]] = self.skin
+            with open(self.here, "w") as fw:
+                for section in place:
+                    fw.write("".join(section))
+
+    def see(self):
+
+
+        for section in self.load:
+            print("".join(section),end="")
+
+
+
+    def move(self):
+        def up():
+            self.load[self.coordinates[0]][self.coordinates[1]] = " "
+            self.coordinates[0] -= 1
+            self.load[self.coordinates[0]][self.coordinates[1]] = "x"
+
+        def down():
+            self.load[self.coordinates[0]][self.coordinates[1]] = " "
+            self.coordinates[0] += 1
+            self.load[self.coordinates[0]][self.coordinates[1]] = "x"
+
+        def right():
+            self.load[self.coordinates[0]][self.coordinates[1]] = " "
+            self.coordinates[1] += 1
+            self.load[self.coordinates[0]][self.coordinates[1]] = "x"
+
+        def left():
+            self.load[self.coordinates[0]][self.coordinates[1]] = " "
+            self.coordinates[1] -= 1
+            self.load[self.coordinates[0]][self.coordinates[1]] = "x"
+
+        where = input()
+        if where== "w": up()
+
+        if where=="s": down()
+
+        if where=="a": left()
+
+        if where=="d": right()
 
 class Land:
     def __init__(self, name):
@@ -24,10 +79,6 @@ class Land:
                 file.seek(0)
                 json.dump(load_data, file, indent=4)
 
-
-
-            
-    #ToDo áthelyezni generatebe
 
 
 class Place:
@@ -56,10 +107,6 @@ class Place:
                 json.dump(load_data, file, indent=4)
 
     
-
-
-
-
 class World:
     def __init__(self):
         with open("lands.json", "r+") as file: self.lands = json.load(file)
@@ -139,8 +186,19 @@ class Json:
 
 
 Json().generate_json()
+Place("fasz", "erdo.map",30, 10).json_place()
+Place("kope", "kishegy.map", 30, 10).json_place()
 World().generate_world()
-Place("fasz", "erdo.map",50, 30).json_place()
-Place("kope", "kishegy.map", 50, 30).json_place()
 Land("fasz").json_land()
 Land("kope").json_land()
+Character().spawn()
+
+
+play = True
+a = Character()
+while play:
+    a.see()
+    a.move()
+
+# ToDO megjegyezni milyen hely volt előtte
+# ToDO Szeparálni a fájlokat
