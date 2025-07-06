@@ -20,5 +20,4 @@ Az alábbi táblán látható a pálya szöveges megjelenítése:
 
 ---
 
-Ha kéred, ezt le is tudom menteni neked letölthető `.md` fájlba — csak szólj bátran! 🚀
 
