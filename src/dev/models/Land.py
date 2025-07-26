@@ -9,7 +9,7 @@ class Land:
             "name": self.name,
         }
 
-        with open("../lands.json", "r+") as file:
+        with open("./src/lands.json", "r+") as file:
             load_data = json.load(file)
 
             if land_data not in load_data["lands"]:

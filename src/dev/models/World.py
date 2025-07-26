@@ -17,7 +17,7 @@ class World:
 
         def generate_place():
             for place in self.places["places"]:
-                with open(fr"../dev/modules/map/{place["land"]}/{place["name"]}", "w") as f:
+                with open(fr"./src/dev/modules/map/{place["land"]}/{place["name"]}", "w") as f:
                     for i in range(place["y"]):
                         for j in range(place["x"]):
                             esely = random.randint(1, place["x"])

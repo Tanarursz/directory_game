@@ -1,0 +1,14 @@
+
+__pycache__/
+*.pyc
+
+# 📁 IDE-k és szerkesztők
+
+.idea/
+
+.env
+public/kep.png
+
+*.tmp
+*.log
+run_game.bat

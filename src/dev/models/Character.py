@@ -1,5 +1,5 @@
 class Character:
-    def __init__(self, skin="x", here="../dev/modules/map/fasz/erdo.map", coordinates=[1, 1]):
+    def __init__(self, skin="x", here="./src/dev/modules/map/fasz/erdo.map", coordinates=[1, 1]):
         self.skin = skin
         self.here = here
         self.coordinates = coordinates

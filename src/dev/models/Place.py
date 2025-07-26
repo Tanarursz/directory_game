@@ -17,7 +17,7 @@ class Place:
             "y": self.y
         }
 
-        with open("../places.json", "r+") as file:
+        with open("./src/places.json", "r+") as file:
             load_data = json.load(file)
             if place_data not in load_data["places"]:
                 load_data["places"].append(place_data)
