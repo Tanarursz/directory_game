@@ -12,7 +12,7 @@ class World:
 
         def generate_land():
             for land in self.lands["lands"]:
-                if not os.path.exists(fr"K./src/dev/modules/map/{land['name']}"):
+                if not os.path.exists(fr"./src/dev/modules/map/{land['name']}"):
                     os.makedirs(fr"./src/dev/modules/map/{land['name']}")
 
         def generate_place():
