@@ -12,12 +12,12 @@ class World:
 
         def generate_land():
             for land in self.lands["lands"]:
-                if not os.path.exists(fr"../dev/modules/map/{land["name"]}"):
-                    os.makedirs(fr"../dev/modules/map/{land['name']}")
+                if not os.path.exists(fr"K./src/dev/modules/map/{land['name']}"):
+                    os.makedirs(fr"./src/dev/modules/map/{land['name']}")
 
         def generate_place():
             for place in self.places["places"]:
-                with open(fr"./src/dev/modules/map/{place["land"]}/{place["name"]}", "w") as f:
+                with open(fr"./src/dev/modules/map/{place['land']}/{place['name']}", "w") as f:
                     for i in range(place["y"]):
                         for j in range(place["x"]):
                             esely = random.randint(1, place["x"])

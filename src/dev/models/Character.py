@@ -16,9 +16,10 @@ class Character:
 
     def see(self):
 
-
+        palya = ""
         for section in self.load:
-            print("".join(section),end="")
+            palya += "".join(section)
+        return palya
 
 
 
