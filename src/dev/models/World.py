@@ -5,8 +5,8 @@ import json
 
 class World:
     def __init__(self):
-        with open("../lands.json", "r+") as file: self.lands = json.load(file)
-        with open("../places.json", "r+") as file: self.places = json.load(file)
+        with open("./src/lands.json", "r+") as file: self.lands = json.load(file)
+        with open("./src/places.json", "r+") as file: self.places = json.load(file)
 
     def generate_world(self):
 

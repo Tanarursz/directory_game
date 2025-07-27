@@ -3,14 +3,20 @@
         {
             "land": "fasz",
             "name": "erdo.map",
-            "x": 30,
-            "y": 10
+            "x": 50,
+            "y": 20
         },
         {
             "land": "kope",
             "name": "kishegy.map",
-            "x": 30,
-            "y": 10
+            "x": 50,
+            "y": 20
+        },
+        {
+            "land": "fasz",
+            "name": "erdo.map",
+            "x": 70,
+            "y": 40
         }
     ]
 }

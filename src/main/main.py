@@ -9,19 +9,23 @@ from blessed import Terminal
 
 
 File().generate_json()
-Place("fasz", "erdo.map",30, 10).json_place()
-Place("kope", "kishegy.map", 30, 10).json_place()
-World().generate_world()
 Land("fasz").json_land()
 Land("kope").json_land()
+Place("fasz", "erdo.map",70, 40).json_place()
+Place("kope", "kishegy.map", 50, 20).json_place()
+World().generate_world()
+
 Character().spawn()
 
 term = Terminal()
 
+
 def main():
+
     a = Character()
     with term.cbreak(), term.hidden_cursor():
         while True:
+            print(term.normal_cursor(), end="\033c")
             print(term.home + term.clear() + a.see(), end="\033c")
 
             key = term.inkey(timeout=0.1)
