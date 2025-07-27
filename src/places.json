@@ -17,6 +17,24 @@
             "name": "erdo.map",
             "x": 70,
             "y": 40
+        },
+        {
+            "land": "fasz",
+            "name": "erdo.map",
+            "x": 40,
+            "y": 40
+        },
+        {
+            "land": "fasz",
+            "name": "erdo.map",
+            "x": 20,
+            "y": 40
+        },
+        {
+            "land": "fasz",
+            "name": "erdo.map",
+            "x": 20,
+            "y": 20
         }
     ]
 }

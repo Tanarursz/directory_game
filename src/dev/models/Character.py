@@ -21,34 +21,25 @@ class Character:
             palya += "".join(section)
         return palya
 
+ # ToDO Tovább fejlesztett collision (kölön osztály az objektumoknak és a saját helyzetükkel lehgyenek ellátva), tulajdonságok (törhető vagy nem, átmászható vagy nem, be lehet e menni)
+    def move(self, keym):
+        collista = ["f", "k", "|", "-"]
 
-
-    def move(self):
-        def up():
+        if keym.lower() == 'w' and self.load[self.coordinates[0]-1][self.coordinates[1]] not in collista:
             self.load[self.coordinates[0]][self.coordinates[1]] = " "
             self.coordinates[0] -= 1
             self.load[self.coordinates[0]][self.coordinates[1]] = "x"
-
-        def down():
+        elif keym.lower() == 'a' and self.load[self.coordinates[0]][self.coordinates[1]-1] not in collista:
+            self.load[self.coordinates[0]][self.coordinates[1]] = " "
+            self.coordinates[1] -= 1
+            self.load[self.coordinates[0]][self.coordinates[1]] = "x"
+        elif keym.lower() == 's' and self.load[self.coordinates[0] +1][self.coordinates[1]] not in collista:
             self.load[self.coordinates[0]][self.coordinates[1]] = " "
             self.coordinates[0] += 1
             self.load[self.coordinates[0]][self.coordinates[1]] = "x"
-
-        def right():
+        elif keym.lower() == 'd' and self.load[self.coordinates[0]][self.coordinates[1]+1] not in collista:
             self.load[self.coordinates[0]][self.coordinates[1]] = " "
             self.coordinates[1] += 1
             self.load[self.coordinates[0]][self.coordinates[1]] = "x"
 
-        def left():
-            self.load[self.coordinates[0]][self.coordinates[1]] = " "
-            self.coordinates[1] -= 1
-            self.load[self.coordinates[0]][self.coordinates[1]] = "x"
 
-        where = input()
-        if where== "w": up()
-
-        if where=="s": down()
-
-        if where=="a": left()
-
-        if where=="d": right()
