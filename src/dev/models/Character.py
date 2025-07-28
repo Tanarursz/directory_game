@@ -1,5 +1,5 @@
 class Character:
-    def __init__(self, skin="x", here="./src/dev/modules/map/fasz/erdo.map", coordinates=[1, 1]):
+    def __init__(self, skin="x", here="./src/dev/modules/map/fasz/erdo.map", coordinates=[5, 1]): # COORDINATES[0] ELEME AZ Y
         self.skin = skin
         self.here = here
         self.coordinates = coordinates
@@ -7,21 +7,33 @@ class Character:
             self.load = [list(section) for section in file.readlines()]
 
     def spawn(self):
-        with open(self.here, "r") as f:
-            place = [list(section) for section in f.readlines()]
-            place[self.coordinates[0]][self.coordinates[1]] = self.skin
+            self.load[self.coordinates[0]][self.coordinates[1]] = self.skin
             with open(self.here, "w") as fw:
-                for section in place:
+                for section in self.load:
                     fw.write("".join(section))
 
-    def see(self):
 
+
+    def radius(self, valami):
+        pass
+
+    def see(self, night=False):
         palya = ""
-        for section in self.load:
-            palya += "".join(section)
+
+        for y, section in enumerate(self.load):
+            if night:
+                for x, char in enumerate(section):
+                    if char == self.skin or (abs(x - self.coordinates[1]) <= 2 and abs(y - self.coordinates[0]) <= 1):
+                        palya += char
+                    else:
+                        palya += " "
+
+                palya += "\n"
+            else:
+                palya += "".join(section)
         return palya
 
- # ToDO Tovább fejlesztett collision (kölön osztály az objektumoknak és a saját helyzetükkel lehgyenek ellátva), tulajdonságok (törhető vagy nem, átmászható vagy nem, be lehet e menni)
+    # ToDO Tovább fejlesztett collision (kölön osztály az objektumoknak és a saját helyzetükkel lehgyenek ellátva), tulajdonságok (törhető vagy nem, átmászható vagy nem, be lehet e menni)
     def move(self, keym):
         collista = ["f", "k", "|", "-"]
 

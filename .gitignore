@@ -6,4 +6,4 @@ __pycache__/
 public/kep.png
 *.tmp
 *.log
-play.bat
+public/play.bat
