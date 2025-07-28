@@ -25,7 +25,7 @@ def main():
     a = Character()
     with term.cbreak(), term.hidden_cursor():
         while True:
-            print(term.home + term.clear() + a.see(), end="\033c")
+            print(term.home + term.clear() + a.see(True), end="\033c")
 
             key = term.inkey(timeout=0.1)
             if not key:
