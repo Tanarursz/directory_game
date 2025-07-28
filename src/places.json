@@ -3,38 +3,38 @@
         {
             "land": "fasz",
             "name": "erdo.map",
-            "x": 30,
-            "y": 30
-        },
-        {
-            "land": "kope",
-            "name": "kishegy.map",
-            "x": 30,
-            "y": 30
-        },
-        {
-            "land": "fasz",
-            "name": "erdo.map",
-            "x": 30,
+            "x": 50,
             "y": 20
         },
         {
             "land": "kope",
             "name": "kishegy.map",
-            "x": 30,
+            "x": 50,
             "y": 20
         },
         {
             "land": "fasz",
             "name": "erdo.map",
-            "x": 30,
-            "y": 10
+            "x": 70,
+            "y": 40
         },
         {
-            "land": "kope",
-            "name": "kishegy.map",
-            "x": 30,
-            "y": 10
+            "land": "fasz",
+            "name": "erdo.map",
+            "x": 40,
+            "y": 40
+        },
+        {
+            "land": "fasz",
+            "name": "erdo.map",
+            "x": 20,
+            "y": 40
+        },
+        {
+            "land": "fasz",
+            "name": "erdo.map",
+            "x": 20,
+            "y": 20
         }
     ]
 }
