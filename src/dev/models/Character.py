@@ -1,16 +1,61 @@
+import os
+from src.dev.models.Place import Place
+from src.dev.models.Land import Land
+
 class Character:
-    def __init__(self, skin="x", here="./src/dev/modules/map/fasz/erdo.map", coordinates=[5, 1]): # COORDINATES[0] ELEME AZ Y
+    def __init__(self, skin="x", place=None , coordinates=[5, 1]): # COORDINATES[0] ELEME AZ Y
+        if place is None:
+            place = Place.Places[0] if Place.Places else None
         self.skin = skin
-        self.here = here
         self.coordinates = coordinates
-        with open(here, "r") as file:
+        self.land =place.land
+        self.place = place
+        with open(fr"./src/dev/modules/map/{self.land}/{self.place.name}", "r") as file:
             self.load = [list(section) for section in file.readlines()]
+
+
+        self.spawn()
 
     def spawn(self):
             self.load[self.coordinates[0]][self.coordinates[1]] = self.skin
-            with open(self.here, "w") as fw:
+            with open(fr"./src/dev/modules/map/{self.land}/{self.place.name}", "w") as fw:
                 for section in self.load:
                     fw.write("".join(section))
+
+
+    def switchplace(self, last_key):
+        place_index = Place.Places.index(self.place)
+        land_index = Land.Lands.index(self.land)
+        if last_key == 'a' and Place.Places[place_index - 1].land == self.land and place_index-1 >= 0:
+                self.place = Place.Places[place_index - 1]
+                self.coordinates[1] = self.place.x -2
+
+
+        if last_key == 'd' and place_index < len(Place.Places)-1 and Place.Places[place_index + 1].land == self.land:
+                self.place = Place.Places[place_index + 1]
+                self.coordinates[1] = self.place.x - (self.place.x -1)
+
+
+        if last_key == 'w' and  land_index < len(Land.Lands)-1 :
+                self.land = Land.Lands[land_index +1]
+                for place in Place.Places:
+                    if place.land == self.land:
+                        self.place = place
+                        break
+                self.coordinates[0] = self.place.y-2
+
+
+        if last_key == 's' and land_index - 1 >= 0:
+                self.land = Land.Lands[land_index -1]
+                for place in Place.Places:
+                    if place.land == self.land:
+                        self.place = place
+                        break
+                self.coordinates[0] = 1
+
+
+        with open(fr"./src/dev/modules/map/{self.land}/{self.place.name}", "r") as file:
+            self.load = [list(section) for section in file.readlines()]
 
 
 
@@ -35,23 +80,44 @@ class Character:
 
     # ToDO Tovább fejlesztett collision (kölön osztály az objektumoknak és a saját helyzetükkel lehgyenek ellátva), tulajdonságok (törhető vagy nem, átmászható vagy nem, be lehet e menni)
     def move(self, keym):
-        collista = ["f", "k", "|", "-"]
 
-        if keym.lower() == 'w' and self.load[self.coordinates[0]-1][self.coordinates[1]] not in collista:
-            self.load[self.coordinates[0]][self.coordinates[1]] = " "
-            self.coordinates[0] -= 1
+        objektumok = ["f", "k"]
+        fal = ["|", "-"]
+
+        self.load[self.coordinates[0]][self.coordinates[1]] = " "
+
+        if keym.lower() == 'w' and self.load[self.coordinates[0]-1][self.coordinates[1]] not in objektumok:
+            if self.load[self.coordinates[0]-1][self.coordinates[1]] in fal:
+                self.switchplace("w")
+            else:
+                self.coordinates[0] -= 1
+
+
+        elif keym.lower() == 'a' and self.load[self.coordinates[0]][self.coordinates[1]-1] not in objektumok:
+            if self.load[self.coordinates[0]][self.coordinates[1]-1]  in fal:
+                self.switchplace("a")
+            else:
+                self.coordinates[1] -= 1
+
+
+        elif keym.lower() == 's' and self.load[self.coordinates[0] +1][self.coordinates[1]] not in objektumok:
+            if self.load[self.coordinates[0]+1][self.coordinates[1]] in fal:
+                self.switchplace("s")
+            else:
+                self.coordinates[0] += 1
+
+
+        elif keym.lower() == 'd' and self.load[self.coordinates[0]][self.coordinates[1]+1] not in objektumok:
+            if self.load[self.coordinates[0]][self.coordinates[1]+1]  in fal:
+                self.switchplace("d")
+            else:
+                self.coordinates[1] += 1
+
+        try:
             self.load[self.coordinates[0]][self.coordinates[1]] = "x"
-        elif keym.lower() == 'a' and self.load[self.coordinates[0]][self.coordinates[1]-1] not in collista:
-            self.load[self.coordinates[0]][self.coordinates[1]] = " "
-            self.coordinates[1] -= 1
-            self.load[self.coordinates[0]][self.coordinates[1]] = "x"
-        elif keym.lower() == 's' and self.load[self.coordinates[0] +1][self.coordinates[1]] not in collista:
-            self.load[self.coordinates[0]][self.coordinates[1]] = " "
-            self.coordinates[0] += 1
-            self.load[self.coordinates[0]][self.coordinates[1]] = "x"
-        elif keym.lower() == 'd' and self.load[self.coordinates[0]][self.coordinates[1]+1] not in collista:
-            self.load[self.coordinates[0]][self.coordinates[1]] = " "
-            self.coordinates[1] += 1
+        except:
+            self.coordinates[0] = 1
+            self.coordinates[1] = 1
             self.load[self.coordinates[0]][self.coordinates[1]] = "x"
 
 
