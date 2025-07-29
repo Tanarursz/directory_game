@@ -1,8 +1,13 @@
 import json
 
+
+
 class Land:
+    Lands = []
+
     def __init__(self, name):
         self.name = name
+        Land.Lands.append(self.name)
 
     def json_land(self):
         land_data = {
