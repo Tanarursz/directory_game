@@ -71,7 +71,7 @@ class Character:
                     if char == self.skin or (abs(x - self.coordinates[1]) <= 2 and abs(y - self.coordinates[0]) <= 1):
                         palya += char
                     else:
-                        palya += " "
+                        palya += " " # karakter középen marad a táj mozog körülötte
 
                 palya += "\n"
             else:
