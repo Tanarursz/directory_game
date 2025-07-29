@@ -59,16 +59,14 @@ class Character:
 
 
 
-    def radius(self, valami):
-        pass
 
-    def see(self, night=False):
+    def see(self, night=False): # itt is az 'y' az elso
         palya = ""
 
         for y, section in enumerate(self.load):
             if night:
                 for x, char in enumerate(section):
-                    if char == self.skin or (abs(x - self.coordinates[1]) <= 2 and abs(y - self.coordinates[0]) <= 1):
+                    if char == self.skin or (abs(x - self.coordinates[1]) <= 1 and abs(y - self.coordinates[0]) <= 1):
                         palya += char
                     else:
                         palya += " " # karakter középen marad a táj mozog körülötte
@@ -115,7 +113,7 @@ class Character:
 
         try:
             self.load[self.coordinates[0]][self.coordinates[1]] = "x"
-        except:
+        except: #ha olyan helyen jössz vissza ami nincs már a hosszában vagy magasságában a pályának 1,1 re álltja a koordinátákat
             self.coordinates[0] = 1
             self.coordinates[1] = 1
             self.load[self.coordinates[0]][self.coordinates[1]] = "x"
