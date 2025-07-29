@@ -58,6 +58,9 @@ class Character:
             self.load = [list(section) for section in file.readlines()]
 
 
+    def detect_object(self):
+        pass
+
 
 
     def see(self, night=False): # itt is az 'y' az elso

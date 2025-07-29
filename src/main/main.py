@@ -4,6 +4,7 @@ from src.dev.models.World import World
 from src.dev.models.Land import Land
 from src.dev.models.Character import Character
 from blessed import Terminal
+import curses
 
 
 
@@ -20,13 +21,16 @@ World().generate_world()
 
 term = Terminal()
 
-
 def main():
+
 
     a = Character()
     with term.cbreak(), term.hidden_cursor():
         while True:
-            print(term.home + term.clear() + a.see(True), end="\033c")
+
+
+
+            print(term.home + term.clear() + a.see() + f"\nAktuális pálya: {a.place.name}", end="\033c")
 
             key = term.inkey(timeout=0.1)
             if not key:
