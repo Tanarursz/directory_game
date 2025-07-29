@@ -2,12 +2,13 @@ import json
 
 
 class Place:
-
+    Places =  []
     def __init__(self, land, name, x, y):
         self.land = land
         self.name = name
         self.x = x
         self.y = y
+        Place.Places.append(self)
 
     def json_place(self):
         place_data = {

@@ -35,6 +35,36 @@
             "name": "erdo.map",
             "x": 20,
             "y": 20
+        },
+        {
+            "land": "fasz",
+            "name": "mezo.map",
+            "x": 20,
+            "y": 20
+        },
+        {
+            "land": "fasz",
+            "name": "erdo.map",
+            "x": 10,
+            "y": 10
+        },
+        {
+            "land": "fasz",
+            "name": "mezo.map",
+            "x": 10,
+            "y": 10
+        },
+        {
+            "land": "kope",
+            "name": "nagyhegy.map",
+            "x": 50,
+            "y": 20
+        },
+        {
+            "land": "kope",
+            "name": "nagyhegy.map",
+            "x": 50,
+            "y": 50
         }
     ]
 }
