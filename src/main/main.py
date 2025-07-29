@@ -30,7 +30,7 @@ def main():
 
 
 
-            print(term.home + term.clear() + a.see() + f"\nAktuális pálya: {a.place.name}", end="\033c")
+            print(term.home + term.clear() + a.see() + f"\nAktuális pálya: {a.place.name}" + a.detect_object(), end="\033c")
 
             key = term.inkey(timeout=0.1)
             if not key:

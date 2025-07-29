@@ -59,9 +59,11 @@ class Character:
 
 
     def detect_object(self):
-        pass
-
-
+        right = self.load[self.coordinates[0]][self.coordinates[1]-1]
+        left = self.load[self.coordinates[0]][self.coordinates[1]+1]
+        up = self.load[self.coordinates[0]-1][self.coordinates[1]]
+        down = self.load[self.coordinates[0]+1][self.coordinates[1]]
+        return f"\n {up}  \n{right}X{left}\n {down}"
 
     def see(self, night=False): # itt is az 'y' az elso
         palya = ""
