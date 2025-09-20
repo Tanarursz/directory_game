@@ -9,6 +9,7 @@ pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=256)
 walk = pygame.mixer.Sound(fr".\public\sounds\normal\walking.wav")
 
 
+
 class Character:
     def __init__(self, skin="x", place=None , coordinates=[5, 1]): # COORDINATES[0] ELEME AZ Y
         if place is None:
