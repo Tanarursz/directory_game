@@ -1,3 +1,5 @@
+import pygame.mixer_music
+
 from src.dev.models.Place import Place
 from src.dev.models.File import File
 from src.dev.models.World import World
@@ -5,7 +7,6 @@ from src.dev.models.Land import Land
 from src.dev.models.Character import Character
 from blessed import Terminal
 import curses
-
 
 
 
@@ -20,6 +21,12 @@ World().generate_world()
 
 
 term = Terminal()
+
+# TODO összeített hangokba áthelyezni
+natrue = pygame.mixer.Sound(fr".\public\sounds\menu\nature.mp3")
+
+natrue.play(loops=-1)
+
 
 def main():
 
