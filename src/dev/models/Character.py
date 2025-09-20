@@ -1,6 +1,13 @@
 import os
 from src.dev.models.Place import Place
 from src.dev.models.Land import Land
+import pygame
+
+
+# ToDO ell kell ezt innen tüntetni (összesített hang)
+pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=256)
+walk = pygame.mixer.Sound(fr".\public\sounds\normal\walking.wav")
+
 
 class Character:
     def __init__(self, skin="x", place=None , coordinates=[5, 1]): # COORDINATES[0] ELEME AZ Y
@@ -122,5 +129,7 @@ class Character:
             self.coordinates[0] = 1
             self.coordinates[1] = 1
             self.load[self.coordinates[0]][self.coordinates[1]] = "x"
+        walk.play()
+
 
 
