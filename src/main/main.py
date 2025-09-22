@@ -29,12 +29,13 @@ natrue.play(loops=-1)
 
 
 def main():
-
-
+    tics = 0
     a = Character()
     with term.cbreak(), term.hidden_cursor():
+
         while True:
-            print(term.home + term.clear() + a.see() + f"\nAktuális pálya: {a.place.name}" + a.detect_object(), end="\033c")
+
+            print(f"{term.home + term.clear() + a.see(tics)} {f"\nAktuális pálya:{tics} {a.place.name}"}{a.detect_object()}", end="\033c")
 
             key = term.inkey(timeout=0.1)
             if not key:
@@ -44,6 +45,7 @@ def main():
                 break
             else:
                 a.move(key)
+            tics +=1
 
 if __name__ == "__main__":
     main()

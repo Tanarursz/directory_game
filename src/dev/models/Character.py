@@ -73,11 +73,11 @@ class Character:
         down = self.load[self.coordinates[0]+1][self.coordinates[1]]
         return f"\n {up}  \n{right}X{left}\n {down}"
 
-    def see(self, night=False): # itt is az 'y' az elso
+    def see(self, time): # itt is az 'y' az elso
         palya = ""
 
         for y, section in enumerate(self.load):
-            if night:
+            if time > 10:
                 for x, char in enumerate(section):
                     if char == self.skin or (abs(x - self.coordinates[1]) <= 1 and abs(y - self.coordinates[0]) <= 1):
                         palya += char
@@ -87,6 +87,7 @@ class Character:
                 palya += "\n"
             else:
                 palya += "".join(section)
+
         return palya
 
     # ToDO Tovább fejlesztett collision (kölön osztály az objektumoknak és a saját helyzetükkel lehgyenek ellátva), tulajdonságok (törhető vagy nem, átmászható vagy nem, be lehet e menni)
