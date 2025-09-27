@@ -84,7 +84,7 @@ class Character:
         palya = ""
 
         for y, section in enumerate(self.load):
-            if time > 10:
+            if time > 100:
                 # if tich are high enough, it switch to night, u choose when night is, by changing the bigger number
                 for x, char in enumerate(section):
                     if char == self.skin or (abs(x - self.coordinates[1]) <= 1 and abs(y - self.coordinates[0]) <= 1):

@@ -5,6 +5,7 @@ from src.dev.models.File import File
 from src.dev.models.World import World
 from src.dev.models.Land import Land
 from src.dev.models.Character import Character
+from src.dev.models.Menu import Menu
 from blessed import Terminal
 import curses
 
@@ -17,7 +18,7 @@ Place("fasz", "erdo.map",10, 10).json_place()
 Place("fasz", "mezo.map",10, 10).json_place()
 Place("kope", "kishegy.map", 50, 20).json_place()
 Place("kope", "nagyhegy.map", 50, 50).json_place()
-World().generate_world()
+# World().generate_world()
 
 
 term = Terminal()
@@ -32,6 +33,22 @@ def main():
     tics = 0
     a = Character()
     with term.cbreak(), term.hidden_cursor():
+        while True:
+            print(f"{term.home + term.clear()} {Menu.show()}", end="\033c")
+
+            key = term.inkey(timeout=0.1)
+
+            if not key:
+                continue
+
+            if key.lower() == 'w':
+                Menu.back()
+
+            if key.lower() == 's':
+                Menu.next()
+
+            if key.lower() == 'a':
+                break
 
         while True:
 
