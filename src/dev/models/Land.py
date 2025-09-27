@@ -1,6 +1,7 @@
 import json
 
-
+# Lands = list to gether all the land to switchpalces, if u make a Land object automatically get in this list
+# name = its the name of the land
 
 class Land:
     Lands = []
@@ -9,6 +10,7 @@ class Land:
         self.name = name
         Land.Lands.append(self.name)
 
+    # make the land json it self
     def json_land(self):
         land_data = {
             "name": self.name,

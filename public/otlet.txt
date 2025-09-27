@@ -1,0 +1,45 @@
+|……………………………….|
+|…………………………...|
+|….………tttt…………|
+|…….……a  t…………|
+|……….…tttt…………|
+|………….……………………|
+|…………….…………………|
+templom kivülről
+
+
+
+
+|…………n……ßß……….|
+|……n…………………...|
+|….………..n.…………|
+|……n…….....………|
+|……ß.…...…ß………|
+|………….n…………………|
+|………….……ß……………|
+
+ß - fa
+
+n - kő
+
+ttttttttttttttt
+t              tttttt
+t                   t
+t                   t
+t              tttttt
+ttttttttttttttt
+
+templom belülről
+
+
+|……………,……………….|
+|,…………,………,...|
+|…,………,……….,..|
+|……,…….,..…,……|
+|………,…..,.……,…|
+|…………,………,……,…|
+|……………,………,………|
+
+random generálunk , -> ez lesz a jele az esőnek és ez eltakarja majd az objektumat random fognake változni
+
+ESŐ

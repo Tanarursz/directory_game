@@ -9,9 +9,13 @@ pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=256)
 walk = pygame.mixer.Sound(fr".\public\sounds\normal\walking.wav")
 
 
+#skin = the characters skin that appears in the game
+# place = its from the class Place(), if the place is None, automatically get Places[0]
+# coordinates = its the starting coordinates for the player1 (COORDIANTES[0] is y)
+# load = load is the place where the character is at the moment, but loaded in list form
 
 class Character:
-    def __init__(self, skin="x", place=None , coordinates=[5, 1]): # COORDINATES[0] ELEME AZ Y
+    def __init__(self, skin="x", place=None , coordinates=[5, 1]):
         if place is None:
             place = Place.Places[0] if Place.Places else None
         self.skin = skin
@@ -24,13 +28,15 @@ class Character:
 
         self.spawn()
 
+    # it spawn the character at its coordinates
     def spawn(self):
             self.load[self.coordinates[0]][self.coordinates[1]] = self.skin
             with open(fr"./src/dev/modules/map/{self.land}/{self.place.name}", "w") as fw:
                 for section in self.load:
                     fw.write("".join(section))
 
-
+    # when u leave a map, its switches to the other one in horizontal or vertical
+    # it detect what was your last key and then it uses to guess which direction u go
     def switchplace(self, last_key):
         place_index = Place.Places.index(self.place)
         land_index = Land.Lands.index(self.land)
@@ -65,7 +71,7 @@ class Character:
         with open(fr"./src/dev/modules/map/{self.land}/{self.place.name}", "r") as file:
             self.load = [list(section) for section in file.readlines()]
 
-
+    # its detect nearest objects in sight
     def detect_object(self):
         right = self.load[self.coordinates[0]][self.coordinates[1]-1]
         left = self.load[self.coordinates[0]][self.coordinates[1]+1]
@@ -73,11 +79,13 @@ class Character:
         down = self.load[self.coordinates[0]+1][self.coordinates[1]]
         return f"\n {up}  \n{right}X{left}\n {down}"
 
+    # it 'draws' the map line by line and whatch the tics to estimate time
     def see(self, time): # itt is az 'y' az elso
         palya = ""
 
         for y, section in enumerate(self.load):
             if time > 10:
+                # if tich are high enough, it switch to night, u choose when night is, by changing the bigger number
                 for x, char in enumerate(section):
                     if char == self.skin or (abs(x - self.coordinates[1]) <= 1 and abs(y - self.coordinates[0]) <= 1):
                         palya += char
@@ -91,6 +99,7 @@ class Character:
         return palya
 
     # ToDO Tovább fejlesztett collision (kölön osztály az objektumoknak és a saját helyzetükkel lehgyenek ellátva), tulajdonságok (törhető vagy nem, átmászható vagy nem, be lehet e menni)
+    # it defines what key do what moves and do sounds for moving (right now)
     def move(self, keym):
 
         objektumok = ["f", "k"]
