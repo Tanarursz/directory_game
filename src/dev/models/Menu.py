@@ -1,53 +1,55 @@
 from colorama import Fore, Back, Style, init
-from src.dev.models.Button import Button
-
 init()
 
 class Menu:
-    buttons = [Button("option", fore=Fore.GREEN, selected=True), Button("start"), Button("load")]
-    index = 0
+    Main = None
 
-    @staticmethod
-    def next():
-        if Menu.index >= len(Menu.buttons) -1:
-            Menu.buttons[-1].fore = Fore.CYAN
-            Menu.buttons[-1].selected = False
-            Menu.buttons[0].fore = Fore.GREEN
-            Menu.buttons[0].selected = True
+    def __init__(self, name, buttons):
+        self.name = name
+        self.index = 0
+        self.buttons = buttons
 
-            Menu.index = 0
+    def next(self):
+        if self.index >= len(self.buttons) -1:
+            self.buttons[-1].fore = Fore.CYAN
+            self.buttons[-1].selected = False
+            self.buttons[0].fore = Fore.GREEN
+            self.buttons[0].selected = True
+
+            self.index = 0
         else:
-            Menu.index += 1
-            Menu.buttons[Menu.index -1].fore = Fore.CYAN
-            Menu.buttons[Menu.index -1].selected = False
-            Menu.buttons[Menu.index].fore = Fore.GREEN
-            Menu.buttons[Menu.index].selected = True
+            self.index += 1
+            self.buttons[self.index -1].fore = Fore.CYAN
+            self.buttons[self.index -1].selected = False
+            self.buttons[self.index].fore = Fore.GREEN
+            self.buttons[self.index].selected = True
 
-    @staticmethod
-    def back():
-        if Menu.index <= 0:
-            Menu.buttons[0].fore = Fore.CYAN
-            Menu.buttons[0].selected = False
-            Menu.buttons[-1].fore = Fore.GREEN
-            Menu.buttons[-1].selected = True
-            Menu.index = len(Menu.buttons) - 1
+    def back(self):
+        if self.index <= 0:
+            self.buttons[0].fore = Fore.CYAN
+            self.buttons[0].selected = False
+            self.buttons[-1].fore = Fore.GREEN
+            self.buttons[-1].selected = True
+            self.index = len(self.buttons) - 1
         else:
-            Menu.index -= 1
-            Menu.buttons[Menu.index +1].fore = Fore.CYAN
-            Menu.buttons[Menu.index +1].selected = False
-            Menu.buttons[Menu.index].fore = Fore.GREEN
-            Menu.buttons[Menu.index].selected = True
+            self.index -= 1
+            self.buttons[self.index +1].fore = Fore.CYAN
+            self.buttons[self.index +1].selected = False
+            self.buttons[self.index].fore = Fore.GREEN
+            self.buttons[self.index].selected = True
 
 
-    @staticmethod
-    def show():
-        menustr = ""
-        for button in Menu.buttons:
-            menustr += button.fore + button.back + button.text + "\n"
+    def show(self):
+        menustr = f"{" "*8 + self.name}{"\n"*2}"
+        for button in self.buttons:
+            menustr += " "*8 + button.fore + button.back + button.text + "\n"
 
         print(menustr)
 
-
+    def check_selected(self):
+        for button in self.buttons:
+            if button.selected:
+                return button.callback
 
 
 
