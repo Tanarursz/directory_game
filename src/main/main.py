@@ -10,10 +10,11 @@ def main():
 
 
     Menu.Main = menu
-    tics = 0
+    tics = 1
 
     with term.cbreak(), term.hidden_cursor():
         while True:
+
             print(f"{term.home + term.clear()} {Menu.Main.show()}", end="\033c")
 
             key = term.inkey(timeout=0.1)
@@ -35,7 +36,13 @@ def main():
 
         while True:
 
-            print(f"{term.home + term.clear() + a.see(tics)} {f"\nAktuális pálya:{tics} {a.place.name}"}{a.detect_object()}", end="\033c")
+
+
+            print("\033[H\033[J" +
+                  f"{a.see(tics)}"
+                  # f"{a.do_humming(tics)}"
+                  f"\nAktuális pálya: {tics} {a.place.name}{a.detect_object()}",
+                  end="")
 
             key = term.inkey(timeout=0.1)
             if not key:

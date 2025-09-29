@@ -1,12 +1,9 @@
-import os
-from src.dev.models.Place import Place
-from src.dev.models.Land import Land
-import pygame
 
-
+import random
+from src.dev.models.Animation import Animation
+from src.dev.variables import Sound, Place, Land
+import keyboard
 # ToDO ell kell ezt innen tüntetni (összesített hang)
-pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=256)
-walk = pygame.mixer.Sound(fr".\public\sounds\normal\walking.wav")
 
 
 #skin = the characters skin that appears in the game
@@ -22,6 +19,9 @@ class Character:
         self.coordinates = coordinates
         self.land =place.land
         self.place = place
+        from src.dev.variables import humming, walk
+        self.walk = walk
+        self.humming = humming
         with open(fr"./src/dev/modules/map/{self.land}/{self.place.name}", "r") as file:
             self.load = [list(section) for section in file.readlines()]
 
@@ -140,7 +140,20 @@ class Character:
             self.coordinates[0] = 1
             self.coordinates[1] = 1
             self.load[self.coordinates[0]][self.coordinates[1]] = "x"
-        walk.play()
+        self.walk.play_song()
+
+
+    # TODO megjavítani hogy ne legyen budos mint a szar
+    def do_humming(self, when):
+        if when % 10 ==0:
+            with open(r".\public\thinking.txt", "r") as file:
+                read = file.readlines()
+                random_text = random.choice(read)
+                self.humming.play_song()
+                Animation.string_animation(random_text)
+            when += 1
+
+
 
 
 

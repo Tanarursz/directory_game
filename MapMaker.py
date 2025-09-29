@@ -10,7 +10,7 @@ DIRECTORIES = [
 current_file = None
 
 def load_files():
-    """Fill the listbox with files from all DIRECTORIES"""
+    """Fill the listbox wit h files from all DIRECTORIES"""
     listbox.delete(0, tk.END)
     for directory in DIRECTORIES:
         if not os.path.exists(directory):

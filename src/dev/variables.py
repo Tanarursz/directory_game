@@ -25,8 +25,9 @@ Place("kope", "nagyhegy.map", 50, 50).json_place()
 
 term = Terminal()
 
-
+walk = Sound(r".\public\sounds\normal\walking.wav", format="wav")
 nature =  Sound(r".\public\sounds\menu\nature.mp3", format="mp3")
+humming = Sound(r".\public\sounds\normal\thinking-humming.wav", format="wav")
 
 
 menu = Menu("MENU", [Button("start", fore=Fore.GREEN, callback="break", selected=True), Button("option", callback='Menu.Main=option'), Button("load", callback='print("faszos")')])
